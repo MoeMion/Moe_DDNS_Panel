@@ -1,0 +1,336 @@
+<!-- =========================================================
+* Argon Dashboard PRO v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Moe DDNS Panel</title>
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/img/brand/favicon.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="/assets/css/argon.css?v=1.1.0" type="text/css">
+</head>
+
+<body class="bg-default">
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
+              <h1 class="text-white">Moe DDNS Panel</h1>
+              <p class="text-lead text-white" id="hitokoto_text">正在为您写诗...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--9 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-header bg-transparent pb-1">
+              <div class="nav-wrapper">
+                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0 active" id="login-tab" data-toggle="tab" href="#login" role="tab"
+                      aria-controls="login" aria-selected="true"><i class="ni ni-circle-08 mr-2"></i>Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="add-tab" data-toggle="tab" href="#add" role="tab"
+                      aria-controls="add" aria-selected="false"><i class="ni ni-bullet-list-67 mr-2"></i>Add Record</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="list-tab" data-toggle="tab" href="#list" role="tab"
+                      aria-controls="list" aria-selected="false"><i class="ni ni-align-center mr-2"></i>DDNS List</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link mb-sm-3 mb-md-0" id="usage-tab" data-toggle="tab" href="#usage" role="tab"
+                      aria-controls="usage" aria-selected="false"><i class="ni ni-single-copy-04 mr-2"></i>Usage</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                  <div id="loginForm">
+                    <div class="text-center mb-4">
+                      请输入您的密码~
+                    </div>
+                    <div class="form-group mb-3">
+                      <div class="input-group input-group-merge input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                        </div>
+                        <input class="form-control" placeholder="Password" type="password" id="password">
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-primary my-4" id="loginButton">登录</button>
+                    </div>
+                  </div>
+                  <div id="loginSuccess" style="display:none;" class="text-center">
+                    <i class="ni ni-check-bold"></i><span>您已成功登录！</span>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade" id="add" role="tabpanel" aria-labelledby="add-tab">
+                  <div class="text-center mb-4">
+                    添加DDNS记录
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="input-group input-group-merge input-group-alternative">
+                      <input class="form-control" placeholder="Hostname" type="text" id="ddnsHost" aria-label="ddnsHost"
+                        aria-describedby="host-addon" aria-label="host-input">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="fulldomain">loading...</span>
+                      </div>
+                    </div>
+                    <div class="text-center text-muted text-sm mt-3 mb--3" id="lenlimit"></div>
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn btn-primary my-4" id="addButton">添加</button>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="list-tab">
+                  <div class="table-responsive table-striped">
+                    <div>
+                      <table class="table align-items-center">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">主机名</th>
+                            <th scope="col">记录值</th>
+                            <th scope="col">状态</th>
+                            <th scope="col">操作</th>
+                          </tr>
+                        </thead>
+                        <tbody class="list" id="ddnslist">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="usage" role="tabpanel" aria-labelledby="usage-tab">
+                  <p class="description">在面板添加记录之后，使服务器定时请求API地址<mark><span
+                        id="apiAddress">Loading...</span>?action=updateRecord&key=<span
+                        id="globalkey">Loading...</span>&host=[HOST]</mark>，API会自动更新DDNS记录，此外也可以额外增加<mark>ip</mark>字段来指定解析的IP地址。在Linux下可以使用Crontab来定时执行。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="py-5" id="footer-main">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2021 <a href="https://www.qwq.cc" class="font-weight-bold ml-1" target="_blank">Mion</a>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+            <li class="nav-item">
+              <a href="https://www.qwq.cc/" class="nav-link" target="_blank">Mion's Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" target="_blank">GitHub Page</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="//cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+  <!-- Argon JS -->
+  <script src="/assets/js/argon.js?v=1.1.0"></script>
+  <script>
+    fetch('https://v1.hitokoto.cn')
+      .then(response => response.json())
+      .then(data => {
+        const hitokoto = document.getElementById('hitokoto_text')
+        hitokoto.innerText = data.hitokoto
+      })
+      .catch(console.error)
+  </script>
+  <script>
+    login_check();
+    function login_check() {
+      if ($.cookie('globalkey')) {
+        $.ajax({
+          type: 'POST',
+          url: "api.php",
+          data: { action: "fetchInfo", key: $.cookie('globalkey') },
+          success: function (data) {
+            if (data.code == 200) {
+              $.cookie('domain', data.domain);
+              $.cookie('hostlen', data.hostlen);
+              $.cookie('prefix', data.prefix);
+              $.cookie('apiAddress', data.apiAddress);
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              $("#loginForm").toggle();
+              $("#loginSuccess").toggle();
+              Toast.fire({
+                icon: 'success',
+                title: '您已登录成功！'
+              });
+              loadPage();
+            } else {
+              $.removeCookie('globalkey');
+              Swal.fire(
+                '登录失败',
+                '您还记得您设置的密码么？',
+                'error'
+              );
+            }
+          },
+          dataType: 'json'
+        });
+      }
+    }
+    function loadPage() {
+      $("#fulldomain").html($.cookie('prefix') + '.' + $.cookie('domain'));
+      if ($.cookie('hostlen')) {
+        $("#lenlimit").html("最大允许" + $.cookie('hostlen') + "个字符");
+      }
+      $.ajax({
+        type: 'POST',
+        url: "api.php",
+        data: { key: $.cookie('globalkey'), action: "listRecords" },
+        success: function (data) {
+          if (data.code) {
+            showswal("失败", data.msg, data.action, "好的");
+          } else {
+            $.each(data, function (index, item) {
+              var tr;
+              tr = '<th><span class="name mb-0 text-sm">' + item.host + $.cookie("prefix") + '</span></th>' + '<td>' + item.value + '</td>' + '<td>' + item.status + '</td>' + '<td class="align-items-center"><button class="btn btn-sm btn-primary" data-clipboard-text="' + $.cookie('apiAddress') + "?action=updateRecord&key=" + $.cookie('globalkey') + '&host=' + item.host + '">复制更新链接</button> <button class="btn btn-sm btn-danger toggleButton" value="'+item.host+'" onclick="toggleRecord(this);">启用/禁用</button></td>';
+              $("#ddnslist").append('<tr>' + tr + '</tr>')
+            })
+          }
+
+        },
+        dataType: 'json'
+      });
+      $("#apiAddress").html($.cookie('apiAddress'));
+      $("#globalkey").html($.cookie('globalkey'));
+      
+    }
+
+    function showswal(title, text, type, buttonText) {
+      swal.fire({
+        title: title,
+        text: text,
+        icon: type,
+        button: buttonText
+      });
+    }
+    $("#loginButton").click(function () {
+      $.cookie("globalkey", $("#password").val());
+      login_check();
+    });
+
+    function toggleRecord(obj) {
+      var host = obj.getAttribute('value');
+      $.ajax({
+        type: 'POST',
+          url: "api.php",
+          data: { key: $.cookie('globalkey'), action: "toggleRecord", 'host': host },
+          success: function (data) {
+            if (data.code == 200) { showswal("成功", data.msg, data.action, "好的"); $("#ddnslist").empty(); loadPage();} else {
+              showswal("失败", data.msg, data.action, "好的");
+            }
+          },
+          dataType: 'json'
+        })
+    }
+
+    $("#addButton").click(function () {
+      if ($.cookie("globalkey")) {
+        $.ajax({
+          type: 'POST',
+          url: "api.php",
+          data: { key: $.cookie('globalkey'), action: "addRecord", host: $("#ddnsHost").val() },
+          success: function (data) {
+            if (data.code == 200) { showswal("成功", data.msg, data.action, "好的"); } else {
+              showswal("失败", data.msg, data.action, "好的");
+            }
+
+          },
+          dataType: 'json'
+        });
+      } else {
+        showswal("错误", "请先登录！", "warning", "好的");
+      }
+    });
+    
+    var clipboard = new ClipboardJS('.btn');
+
+    clipboard.on('success', function (e) {
+
+      showswal("复制成功","完整的更新链接已经保存至您的剪贴板中~","success","好的");
+
+      e.clearSelection();
+    });
+
+    clipboard.on('error', function (e) {
+      showswal("复制失败","详细的错误信息详见控制台~","error","好的");
+      console.error('Action:', e.action);
+      console.error('Trigger:', e.trigger);
+    });
+  </script>
+</body>
+
+</html>
